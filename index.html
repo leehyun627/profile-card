@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이현 | 종합보험설계사 | 세이프가드 프로</title>
+
+    <meta property="og:title" content="이현 | 종합보험설계사 | 세이프가드 프로" />
+    <meta property="og:description" content="당신의 보상을 지키는 방패. 가입부터 분쟁 대응까지 전문가가 밀착 관리합니다." />
+    <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg" />
+    <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app/" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="이현 | 종합보험설계사" />
+    <meta name="twitter:description" content="세이프가드 프로 대표 이현입니다." />
+    <meta name="twitter:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -37,15 +49,14 @@
                 ],
                 certificates: ["손해보험", "생명보험", "변액보험", "제3보험"],
                 activities: [
-                    // ✅ 블로그 및 인스타그램 링크를 정확히 반영했습니다.
-                    { name: "세이프가드 프로 블로그", link: "https://m.blog.naver.com/safeguard_pro" },
-                    { name: "세이프가드 프로 인스타", link: "https://www.instagram.com/m.a.p_lee_pro?igsh=eWlna2F6bjNuZGc4&utm_source=qr" }
+                    { name: "실제 분쟁사례 분석 리포트", link: "https://m.blog.naver.com/safeguard_pro" },
+                    { name: "나의 활동 증명 창구 (포트폴리오)", link: "https://www.instagram.com/m.a.p_lee_pro?igsh=eWlna2F6bjNuZGc4&utm_source=qr" }
                 ]
             };
 
             return (
                 <div className="max-w-md mx-auto bg-white min-h-screen pb-16 shadow-2xl relative overflow-hidden rounded-t-3xl border-t border-gray-100">
-                    {/* 상단 프로필 영역 */}
+                    {/* 상단 프로필 영역 (다크 모드 유지) */}
                     <div className="bg-slate-950 text-white p-10 rounded-b-[3.5rem] text-center shadow-xl relative z-10">
                         <div className="w-28 h-28 mx-auto mb-5 border-4 border-white rounded-full overflow-hidden shadow-2xl bg-white flex items-center justify-center">
                             <img 
@@ -62,7 +73,7 @@
                         {/* 상담하기 버튼 */}
                         <div className="mt-10 flex justify-center">
                             <a href="https://open.kakao.com/o/sLOsfuei" target="_blank" className="inline-block group">
-                                <button className="bg-white text-slate-900 px-10 py-3.5 rounded-full font-black shadow-2xl flex items-center gap-2.5 active:scale-95 transition-all group-hover:bg-blue-50">
+                                <button className="bg-white text-slate-900 px-10 py-3.5 rounded-full font-black shadow-2xl flex items-center gap-2.5 active:scale-95 transition-all group-hover:bg-blue-50 hover:shadow-lg">
                                     <i data-lucide="message-circle" class="w-5 h-5 text-blue-600"></i> 실시간 상담하기
                                 </button>
                             </a>
@@ -129,7 +140,8 @@
                         {activeTab === 'intro' && (
                             <div className="bg-slate-50 p-9 rounded-3xl text-slate-700 leading-relaxed shadow-inner border border-gray-100">
                                 <p className="mb-6 font-medium text-lg text-slate-900 leading-tight">안녕하세요,<br/><span className="font-extrabold text-blue-800">세이프가드 프로</span> 대표 <span className="font-extrabold text-black">이현</span>입니다.</p>
-                                <p className="mb-4 text-base text-slate-800">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 고객님의 가입부터 분쟁 대응까지 전 과정을 밀착 관리합니다.</p>
+                                
+                                <p className="mb-4 text-base text-slate-800">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 가입부터 분쟁 대응까지 전 과정을 밀착 관리합니다.</p>
                                 <p className="text-blue-800 font-bold italic text-base">"저의 세이프가드 프로가 365일 24시간 언제 어디서든 고객의 보상을 지키는 단단한 방패가 되어 드리겠습니다."</p>
                             </div>
                         )}
