@@ -37,6 +37,7 @@
 
             return (
                 <div className="max-w-md mx-auto bg-white min-h-screen pb-10 shadow-2xl">
+                    {/* 상단 프로필 영역 */}
                     <div className="bg-slate-900 text-white p-10 rounded-b-[3rem] text-center shadow-lg">
                         <div className="w-24 h-24 bg-slate-700 rounded-full mx-auto mb-4 border-4 border-white flex items-center justify-center">
                             <i data-lucide="user" class="w-12 h-12 text-white"></i>
@@ -44,18 +45,18 @@
                         <h1 className="text-2xl font-bold">{profile.name}</h1>
                         <p className="text-blue-400 font-medium mt-1">{profile.title}</p>
                         <p className="text-sm text-gray-400 mt-4 leading-relaxed px-4 italic">"{profile.slogan}"</p>
-                        <div className="mt-8">
-                            <a href="https://open.kakao.com/o/sLOsfuei" target="_blank">
-    <button className="bg-white text-slate-900 ...">
-        <i data-lucide="message-circle" class="w-5 h-5"></i> 실시간 상담하기
-    </button>
-</a>
-                            px-8 py-3 rounded-full font-bold shadow-xl flex items-center gap-2 mx-auto active:scale-95 transition">
-                                <i data-lucide="message-circle" class="w-5 h-5"></i> 실시간 상담하기
-                            </button>
+                        
+                        {/* ✅ 수정된 상담하기 버튼 영역 */}
+                        <div className="mt-8 flex justify-center">
+                            <a href="https://open.kakao.com/o/sLOsfuei" target="_blank" className="inline-block">
+                                <button className="bg-white text-slate-900 px-8 py-3 rounded-full font-bold shadow-xl flex items-center gap-2 active:scale-95 transition-transform">
+                                    <i data-lucide="message-circle" class="w-5 h-5"></i> 실시간 상담하기
+                                </button>
+                            </a>
                         </div>
                     </div>
 
+                    {/* 탭 메뉴 */}
                     <div className="flex justify-around mt-8 px-4 border-b">
                         {[
                             { id: 'experience', label: '경력/자격', icon: 'award' },
@@ -75,13 +76,14 @@
                         ))}
                     </div>
 
+                    {/* 탭별 콘텐츠 */}
                     <div className="p-6">
                         {activeTab === 'experience' && (
                             <div className="space-y-6">
                                 <div>
                                     <h3 className="text-xs font-black text-gray-400 mb-4 uppercase tracking-widest">Experience</h3>
                                     {profile.experience.map((exp, i) => (
-                                        <div key={i} className="bg-gray-50 p-5 rounded-2xl mb-4 border border-gray-100 font-bold">
+                                        <div key={i} className="bg-gray-50 p-5 rounded-2xl mb-4 border border-gray-100 font-bold text-slate-800">
                                             {exp.title}
                                             <p className="text-xs text-gray-500 mt-2 font-normal">{exp.period}</p>
                                         </div>
@@ -91,7 +93,7 @@
                                     <h3 className="text-xs font-black text-gray-400 mb-4 uppercase tracking-widest">Licenses</h3>
                                     <div className="flex flex-wrap gap-2">
                                         {profile.certificates.map((cert, i) => (
-                                            <span key={i} className="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-xs font-bold">{cert}</span>
+                                            <span key={i} className="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-xs font-bold border border-blue-100">{cert}</span>
                                         ))}
                                     </div>
                                 </div>
@@ -100,7 +102,7 @@
                         {activeTab === 'activity' && (
                             <div className="space-y-4">
                                 {profile.activities.map((act, i) => (
-                                    <a href={act.link} key={i} className="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50">
+                                    <a href={act.link} key={i} className="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50 transition-colors">
                                         <span className="font-bold text-slate-700">{act.name}</span>
                                         <i data-lucide="external-link" class="w-5 h-5 text-blue-500"></i>
                                     </a>
@@ -108,10 +110,10 @@
                             </div>
                         )}
                         {activeTab === 'intro' && (
-                            <div className="bg-slate-50 p-8 rounded-3xl text-slate-700 leading-relaxed shadow-inner">
+                            <div className="bg-slate-50 p-8 rounded-3xl text-slate-700 leading-relaxed shadow-inner border border-gray-100">
                                 <p className="mb-4 font-bold text-xl text-slate-900 leading-snug underline decoration-blue-500 underline-offset-8">안녕하세요,<br/>전문가 {profile.name}입니다.</p>
                                 <p>보험약관 및 실제 대법원 판례를 근거로 고객님의 권익을 철저히 분석하고 보호합니다.</p>
-                                <p className="mt-4 font-medium italic">"실력은 결과로 증명하겠습니다."</p>
+                                <p className="mt-4 font-medium italic text-blue-600">"실력은 결과로 증명하겠습니다."</p>
                             </div>
                         )}
                     </div>
