@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이현 | 디지털 명함</title>
+    <title>이현 | 종합보험설계사 | 세이프가드 프로</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
+        .animate-fadeIn { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 text-slate-900">
     <div id="root"></div>
     <script type="text/babel">
         const { useState, useEffect } = React;
@@ -20,10 +26,13 @@
             
             useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [activeTab]);
 
+            // 프로필 정보 (이 부분만 수정하면 내용이 바뀝니다)
             const profile = {
                 name: "이현", 
                 title: "종합보험설계사",
                 slogan: "당신의 보상을 지키는 방패 : 세이프가드 프로",
+                // ✅ 이현 님의 사진 링크를 적용했습니다.
+                photoUrl: "https://i.postimg.cc/0jJGBpML/peulopil.jpg",
                 experience: [
                     { title: "메타리치 맵그룹 압도 종합보험설계사", period: "2026.01 - 현재" },
                     { title: "종합보험 자문센터 세이프가드 프로 대표설계사", period: "2026.02 - 현재" }
@@ -36,28 +45,34 @@
             };
 
             return (
-                <div className="max-w-md mx-auto bg-white min-h-screen pb-10 shadow-2xl">
+                <div className="max-w-md mx-auto bg-white min-h-screen pb-16 shadow-2xl relative overflow-hidden rounded-t-3xl">
                     {/* 상단 프로필 영역 */}
-                    <div className="bg-slate-900 text-white p-10 rounded-b-[3rem] text-center shadow-lg">
-                        <div className="w-24 h-24 bg-slate-700 rounded-full mx-auto mb-4 border-4 border-white flex items-center justify-center">
-                            <i data-lucide="user" class="w-12 h-12 text-white"></i>
+                    <div className="bg-slate-900 text-white p-10 rounded-b-[3.5rem] text-center shadow-xl relative z-10">
+                        {/* ✅ 사진이 원형으로 깔끔하게 나오도록 수정했습니다. */}
+                        <div className="w-28 h-28 mx-auto mb-5 border-4 border-white rounded-full overflow-hidden shadow-2xl bg-white flex items-center justify-center">
+                            <img 
+                                src={profile.photoUrl} 
+                                alt={`${profile.name} 설계사 프로필`}
+                                className="w-full h-full object-cover object-center scale-105"
+                                onError={(e) => { e.target.src = 'https://via.placeholder.com/150?text=Profile'; }}
+                            />
                         </div>
-                        <h1 className="text-2xl font-bold">{profile.name}</h1>
-                        <p className="text-blue-400 font-medium mt-1">{profile.title}</p>
-                        <p className="text-sm text-gray-400 mt-4 leading-relaxed px-4 italic">"{profile.slogan}"</p>
+                        <h1 className="text-2xl font-black tracking-tight">{profile.name}</h1>
+                        <p className="text-blue-400 font-bold mt-1.5 text-base">{profile.title}</p>
+                        <p className="text-sm text-gray-400 mt-5 leading-relaxed px-2 font-medium italic decoration-blue-500 decoration-wavy underline-offset-4 underline">"{profile.slogan}"</p>
                         
-                        {/* 상담하기 버튼 (정돈된 버전) */}
-                        <div className="mt-8 flex justify-center">
-                            <a href="https://open.kakao.com/o/sLOsfuei" target="_blank" className="inline-block">
-                                <button className="bg-white text-slate-900 px-8 py-3 rounded-full font-bold shadow-xl flex items-center gap-2 active:scale-95 transition-transform">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i> 실시간 상담하기
+                        {/* 상담하기 버튼 */}
+                        <div className="mt-10 flex justify-center">
+                            <a href="https://open.kakao.com/o/sLOsfuei" target="_blank" className="inline-block group">
+                                <button className="bg-white text-slate-900 px-10 py-3.5 rounded-full font-black shadow-2xl flex items-center gap-2.5 active:scale-95 transition-all group-hover:bg-blue-50">
+                                    <i data-lucide="message-circle" class="w-5 h-5 text-blue-600"></i> 실시간 상담하기
                                 </button>
                             </a>
                         </div>
                     </div>
 
                     {/* 탭 메뉴 */}
-                    <div className="flex justify-around mt-8 px-4 border-b">
+                    <div className="flex justify-around mt-10 px-6 border-b border-gray-100">
                         {[
                             { id: 'experience', label: '경력/자격', icon: 'award' },
                             { id: 'activity', label: '활동증명', icon: 'book-open' },
@@ -66,54 +81,58 @@
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`flex flex-col items-center pb-3 px-2 gap-1 transition ${
-                                    activeTab === tab.id ? 'border-b-4 border-slate-900 text-slate-900 font-bold' : 'text-gray-400'
+                                className={`flex flex-col items-center pb-4 px-3 gap-1.5 transition-all relative ${
+                                    activeTab === tab.id ? 'text-slate-950 font-black' : 'text-gray-400 hover:text-slate-600'
                                 }`}
                             >
                                 <i data-lucide={tab.icon} class="w-5 h-5"></i>
-                                <span className="text-xs">{tab.label}</span>
+                                <span className="text-xs tracking-tight">{tab.label}</span>
+                                {activeTab === tab.id && (
+                                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-950 rounded-t-full animate-fadeIn"></div>
+                                )}
                             </button>
                         ))}
                     </div>
 
                     {/* 콘텐츠 영역 */}
-                    <div className="p-6">
+                    <div className="p-8 animate-fadeIn">
                         {activeTab === 'experience' && (
-                            <div className="space-y-6">
+                            <div className="space-y-8">
                                 <div>
-                                    <h3 className="text-xs font-black text-gray-400 mb-4 uppercase tracking-widest">Experience</h3>
+                                    <h3 className="text-xs font-black text-gray-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="briefcase" class="w-4 h-4"></i> Experience</h3>
                                     {profile.experience.map((exp, i) => (
-                                        <div key={i} className="bg-gray-50 p-5 rounded-2xl mb-4 border border-gray-100 font-bold text-slate-800">
-                                            {exp.title}
-                                            <p className="text-xs text-gray-500 mt-2 font-normal">{exp.period}</p>
+                                        <div key={i} className="bg-gray-50 p-6 rounded-2xl mb-5 border border-gray-100 shadow-inner group hover:border-blue-200 transition-colors">
+                                            <h4 className="font-bold text-slate-800 text-base group-hover:text-blue-700">{exp.title}</h4>
+                                            <p className="text-xs text-gray-500 mt-2.5 font-normal tracking-tight bg-white inline-block px-2.5 py-1 rounded-full border border-gray-100">{exp.period}</p>
                                         </div>
                                     ))}
                                 </div>
                                 <div>
-                                    <h3 className="text-xs font-black text-gray-400 mb-4 uppercase tracking-widest">Licenses</h3>
-                                    <div className="flex flex-wrap gap-2">
+                                    <h3 className="text-xs font-black text-gray-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> Licenses</h3>
+                                    <div className="flex flex-wrap gap-2.5">
                                         {profile.certificates.map((cert, i) => (
-                                            <span key={i} className="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-xs font-bold border border-blue-100">{cert}</span>
+                                            <span key={i} className="bg-blue-50 text-blue-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-blue-100 shadow-sm hover:scale-105 transition-transform">{cert}</span>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                         )}
                         {activeTab === 'activity' && (
-                            <div className="space-y-4">
+                            <div className="space-y-5">
+                                <h3 className="text-xs font-black text-gray-400 mb-5 uppercase tracking-widest flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4"></i> Activities</h3>
                                 {profile.activities.map((act, i) => (
-                                    <a href={act.link} key={i} className="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50 transition-colors">
-                                        <span className="font-bold text-slate-700">{act.name}</span>
-                                        <i data-lucide="external-link" class="w-5 h-5 text-blue-500"></i>
+                                    <a href={act.link} key={i} target="_blank" className="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50 hover:border-blue-300 transition-all hover:shadow-md group">
+                                        <span className="font-bold text-slate-700 group-hover:text-blue-700">{act.name}</span>
+                                        <i data-lucide="external-link" class="w-5 h-5 text-blue-500 group-hover:translate-x-1 transition-transform"></i>
                                     </a>
                                 ))}
                             </div>
                         )}
                         {activeTab === 'intro' && (
-                            <div className="bg-slate-50 p-8 rounded-3xl text-slate-700 leading-relaxed shadow-inner border border-gray-100">
-                                <p className="mb-4 font-bold text-xl text-slate-900 leading-snug underline decoration-blue-500 underline-offset-8">안녕하세요,<br/>세이프가드 프로 대표 {profile.name}입니다.</p>
-                                <p className="mb-2">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 가입부터 분쟁 대응까지 전 과정을 관리합니다.</p>
-                                <p>저의 세이프가드 프로가 365일 24시간 언제 어디서든 고객의 보상을 지키는 방패가 되어 드리겠습니다.</p>
+                            <div className="bg-slate-50 p-9 rounded-3xl text-slate-700 leading-relaxed shadow-inner border border-gray-100">
+                                <p className="mb-6 font-bold text-xl text-slate-950 leading-snug underline decoration-blue-500 decoration-4 underline-offset-8">안녕하세요,<br/>세이프가드 프로 대표 {profile.name}입니다.</p>
+                                <p className="mb-4 font-medium text-slate-800">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 고객님의 보험 가입부터 분쟁 대응까지 전 과정을 밀착 관리합니다.</p>
+                                <p className="text-blue-700 font-semibold italic text-base">"저의 세이프가드 프로가 365일 24시간 언제 어디서든 고객의 보상을 지키는 단단한 방패가 되어 드리겠습니다."</p>
                             </div>
                         )}
                     </div>
