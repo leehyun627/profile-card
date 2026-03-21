@@ -3,124 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이현 | 세이프가드 프로 | 대표 보험설계사</title>
-
-    <meta property="og:title" content="이현 | 세이프가드 프로 | 대표 보험설계사" />
-    <meta property="og:description" content="보험 전문가 이현의 공식 명함입니다." />
-    <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg" />
-    <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app/" />
-    <meta property="og:type" content="website" />
-
+    <title>이현 | 세이프가드 프로</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f3f4f6; }
-        .animate-fadeIn { animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; }
+        .chat-window { display: none; position: fixed; bottom: 80px; right: 20px; width: 350px; height: 500px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; z-index: 1000; }
+        .chat-active { display: flex; }
     </style>
 </head>
-<body>
-    <div id="root"></div>
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+<body class="flex justify-center items-center min-h-screen p-4">
 
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('experience');
-            
-            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [activeTab]);
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden text-center p-8">
+        <div class="w-32 h-32 rounded-full mx-auto border-4 border-blue-600 mb-4 bg-gray-200 flex items-center justify-center">
+            <i class="fas fa-user text-5xl text-gray-400"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800">이현</h1>
+        <p class="text-blue-600 font-semibold mb-2">종합보험설계사</p>
+        <p class="text-gray-500 text-sm mb-6">"당신의 보상을 지키는 방패 : 세이프가드 프로"</p>
+        
+        <button onclick="toggleChat()" class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition">
+            <i class="fas fa-comment-dots mr-2"></i> 실시간 AI 상담하기
+        </button>
+    </div>
 
-            const profile = {
-                name: "이현",
-                title: "종합보험설계사",
-                slogan: "당신의 보상을 지키는 방패 : 세이프가드 프로",
-                photoUrl: "https://i.postimg.cc/0jJGBpML/peulopil.jpg",
-                experience: [
-                    { title: "메타리치 맵그룹 압도 종합보험설계사", period: "2026.01 - 현재" },
-                    { title: "세이프가드 프로 | 종합보험 컨설팅 대표설계사", period: "2026.02 - 현재" }
-                ],
-                certificates: ["손해보험", "생명보험", "변액보험", "제3보험"],
-                activities: [
-                    { name: "세이프가드 프로 블로그", link: "https://m.blog.naver.com/safeguard_pro" },
-                    { name: "세이프가드 프로 인스타그램", link: "https://www.instagram.com/m.a.p_lee_pro?igsh=eWlna2F6bjNuZGc4&utm_source=qr" }
-                ]
-            };
+    <div id="chatWindow" class="chat-window">
+        <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center">
+            <span>보험 전문가 AI 상담</span>
+            <button onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatContent" class="flex-1 p-4 overflow-y-auto bg-gray-50 text-sm space-y-4">
+            <div class="bg-blue-100 p-3 rounded-lg text-gray-800">안녕하세요! 보험 설계사 이현을 대신해 상담을 도와드리는 AI입니다.</div>
+        </div>
+        <div class="p-4 border-t bg-white">
+            <input id="userName" type="text" placeholder="성함" class="w-full border p-2 rounded mb-2 text-xs">
+            <input id="userPhone" type="text" placeholder="연락처" class="w-full border p-2 rounded mb-2 text-xs">
+            <div class="flex gap-2">
+                <input id="chatInput" type="text" placeholder="질문을 입력하세요..." class="flex-1 border p-2 rounded text-xs">
+                <button onclick="sendMessage()" class="bg-blue-600 text-white px-4 py-2 rounded text-xs">전송</button>
+            </div>
+        </div>
+    </div>
 
-            return (
-                <div className="max-w-md mx-auto bg-white min-h-screen pb-16 shadow-2xl relative overflow-hidden rounded-t-3xl border-t border-gray-100">
-                    <div className="bg-slate-950 text-white p-10 rounded-b-[3.5rem] text-center shadow-xl relative z-10">
-                        <div className="w-28 h-28 mx-auto mb-5 border-4 border-white rounded-full overflow-hidden shadow-2xl bg-white flex items-center justify-center">
-                            <img src={profile.photoUrl} alt="프로필" className="w-full h-full object-cover scale-105" />
-                        </div>
-                        <h1 className="text-2xl font-black">{profile.name}</h1>
-                        <p className="text-blue-400 font-bold mt-1.5">{profile.title}</p>
-                        <p className="text-sm text-gray-400 mt-5 italic">"{profile.slogan}"</p>
-                        <div className="mt-10">
-                            <a href="https://open.kakao.com/o/sLOsfuei" target="_blank" className="bg-white text-slate-900 px-10 py-3.5 rounded-full font-black shadow-xl inline-flex items-center gap-2 active:scale-95 transition-all hover:bg-gray-50">
-                                <i data-lucide="message-circle" className="w-5 h-5 text-blue-600"></i> 실시간 상담하기
-                            </a>
-                        </div>
-                    </div>
+    <script>
+        function toggleChat() { document.getElementById('chatWindow').classList.toggle('chat-active'); }
 
-                    <div className="flex justify-around mt-10 px-6 border-b border-gray-100 bg-white">
-                        {['experience', 'activity', 'intro'].map((id) => (
-                            <button key={id} onClick={() => setActiveTab(id)} className={`flex flex-col items-center pb-4 px-3 gap-1.5 relative ${activeTab === id ? 'text-slate-950 font-black' : 'text-gray-400'}`}>
-                                <i data-lucide={id === 'experience' ? 'award' : id === 'activity' ? 'book-open' : 'user'} className="w-5 h-5"></i>
-                                <span className="text-xs">{id === 'experience' ? '경력/자격' : id === 'activity' ? '활동증명' : '소개글'}</span>
-                                {activeTab === id && <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-950 rounded-t-full"></div>}
-                            </button>
-                        ))}
-                    </div>
+        async function sendMessage() {
+            const message = document.getElementById('chatInput').value;
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const chatContent = document.getElementById('chatContent');
 
-                    <div className="p-8 animate-fadeIn bg-white">
-                        {activeTab === 'experience' && (
-                            <div className="space-y-6">
-                                <div>
-                                    <h3 className="text-xs font-black text-gray-400 mb-4 tracking-widest uppercase">Experience</h3>
-                                    {profile.experience.map((exp, i) => (
-                                        <div key={i} className="bg-gray-50 p-5 rounded-2xl mb-4 border border-gray-100">
-                                            <h4 className="font-bold text-slate-800">{exp.title}</h4>
-                                            <p className="text-xs text-gray-500 mt-2">{exp.period}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div>
-                                    <h3 className="text-xs font-black text-gray-400 mb-4 tracking-widest uppercase">Licenses</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {profile.certificates.map((cert, i) => (
-                                            <span key={i} className="bg-blue-50 text-blue-700 px-3 py-2 rounded-xl text-xs font-bold border border-blue-100">{cert}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                        {activeTab === 'activity' && (
-                            <div className="space-y-4">
-                                {profile.activities.map((act, i) => (
-                                    <a href={act.link} key={i} target="_blank" className="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50 group">
-                                        <span className="font-bold text-slate-700 group-hover:text-blue-700">{act.name}</span>
-                                        <i data-lucide="external-link" className="w-5 h-5 text-blue-500"></i>
-                                    </a>
-                                ))}
-                            </div>
-                        )}
-                        {activeTab === 'intro' && (
-                            <div className="bg-slate-50 p-8 rounded-3xl text-slate-700 leading-relaxed border border-gray-100">
-                                <p className="mb-6 text-lg text-slate-900">안녕하세요,<br/><span className="font-extrabold text-blue-800">세이프가드 프로</span> 대표 <span className="font-extrabold text-black">이현</span>입니다.</p>
-                                <p className="mb-4 text-base">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 가입부터 보상 분쟁 대응까지 전 과정을 밀착 관리합니다.</p>
-                                <p className="text-blue-800 font-bold italic">"고객님의 보상을 지키는 단단한 방패가 되어 드리겠습니다."</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            );
-        };
+            if (!message) return;
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+            chatContent.innerHTML += `<div class="text-right"><span class="bg-blue-600 text-white p-2 rounded-lg inline-block">${message}</span></div>`;
+            document.getElementById('chatInput').value = '';
+
+            try {
+                // 아까 만든 API 경로로 질문 전송
+                const response = await fetch('/API/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, name, phone })
+                });
+                const data = await response.json();
+                chatContent.innerHTML += `<div class="text-left"><span class="bg-white border p-2 rounded-lg inline-block text-gray-800">${data.answer}</span></div>`;
+                chatContent.scrollTop = chatContent.scrollHeight;
+            } catch (e) {
+                chatContent.innerHTML += `<div class="text-center text-red-500 text-xs">연결 오류가 발생했습니다.</div>`;
+            }
+        }
     </script>
 </body>
 </html>
