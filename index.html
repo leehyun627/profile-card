@@ -3,182 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>이현 | 종합보험설계사 | 세이프가드 프로</title>
-    <meta property="og:title" content="이현 | 종합보험설계사 | 세이프가드 프로">
-    <meta property="og:description" content="고객님의 보상을 지키는 방패. 실시간 AI 보험 상담">
-    <meta property="og:image" content="https://i.postimg.cc/0jJGbPML/peulopil.jpg">
-    <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app/">
-    <meta name="twitter:card" content="summary_large_image">
+    <title>이현 | 세이프가드 프로 | 대표 보험설계사</title>
+
+    <meta property="og:title" content="이현 | 세이프가드 프로 | 대표 보험설계사" />
+    <meta property="og:description" content="당신의 보상을 지키는 방패 : 세이프가드 프로" />
+    <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg" />
+    <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app/" />
+    <meta property="og:type" content="website" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; background-color: #f3f4f6; }
         
-        body { font-family: 'Noto Sans KR', sans-serif; -webkit-user-select: none; user-select: none; touch-action: manipulation; background-color: #f0f2f5; }
-        
-        /* 💖 두 번째 사진: 멋진 앱 디자인 CSS 완전 복구 */
-        .safe-area { padding-top: constant(safe-area-inset-top); padding-top: safe-area-inset-top; }
-        .main-card { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); border-radius: 40px; }
-        .tab-item { transition: all 0.3s ease; }
-        .tab-item.active { color: #000; border-bottom: 3px solid #000; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .license-badge { background-color: #eff6ff; color: #1d4ed8; padding: 6px 16px; border-radius: 20px; font-size: 13px; }
+        .animate-fadeIn { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 🔥 AI 채팅창 팝업 CSS */
-        .chat-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; flex-direction: column; }
-        .chat-active { display: flex; animation: slideUp 0.3s ease-out; }
+        /* AI 채팅창 팝업 애니메이션 */
+        .chat-slide-up { animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        #chatInput, #userName, #userPhone { font-size: 16px; } /* 모바일 자동줌 방지 */
+        
+        /* 모바일 입력창 포커스 시 자동 줌 방지 */
+        input { font-size: 16px !important; }
     </style>
 </head>
-<body class="flex justify-center safe-area min-h-screen">
+<body>
+    <div id="root"></div>
 
-    <div class="w-full max-w-md bg-white min-h-screen shadow-lg relative">
-        
-        <div class="main-card p-6 pb-16 text-center text-white">
-            <div class="w-24 h-24 rounded-full mx-auto border-4 border-white overflow-hidden mb-5">
-                <img src="https://i.postimg.cc/0jJGbPML/peulopil.jpg" alt="이현 프로필" class="w-full h-full object-cover">
-            </div>
-            <h1 class="text-2xl font-black mb-1">이현</h1>
-            <p class="text-blue-400 text-sm font-bold mb-3">종합보험설계사</p>
-            <p class="text-xs text-gray-400 px-4 mb-6">"당신의 보상을 지키는 방패 : 세이프가드 프로"</p>
-            
-            <button onclick="openChat()" class="inline-flex items-center bg-white text-gray-900 font-bold px-8 py-3 rounded-full shadow-lg text-sm hover:scale-105 transition-transform">
-                <i class="far fa-comment-dots text-blue-600 mr-2.5 text-base"></i>
-                실시간 상담하기
-            </button>
-        </div>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-        <div class="flex border-b border-gray-100 mt-[-20px] bg-white rounded-t-3xl relative z-10">
-            <div class="tab-item active flex-1 text-center py-5 cursor-pointer font-bold text-gray-500" onclick="openTab(event, 'tab1')">
-                <i class="fas fa-certificate block mb-1 text-xl"></i>
-                경력/자격
-            </div>
-            <div class="tab-item flex-1 text-center py-5 cursor-pointer font-bold text-gray-500" onclick="openTab(event, 'tab2')">
-                <i class="fas fa-book-open block mb-1 text-xl"></i>
-                활동증명
-            </div>
-            <div class="tab-item flex-1 text-center py-5 cursor-pointer font-bold text-gray-500" onclick="openTab(event, 'tab3')">
-                <i class="fas fa-pen-nib block mb-1 text-xl"></i>
-                소개글
-            </div>
-        </div>
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('experience');
+            const [isChatOpen, setIsChatOpen] = useState(false);
+            const [messages, setMessages] = useState([
+                { role: 'assistant', content: '안녕하세요! 설계사 이현을 대신해 상담을 돕는 AI입니다. 성함과 연락처를 남겨주시면 더 정확한 상담이 가능합니다.' }
+            ]);
+            const [userInput, setUserInput] = useState('');
+            const [userName, setUserName] = useState('');
+            const [userPhone, setUserPhone] = useState('');
+            const chatEndRef = useRef(null);
 
-        <div class="p-6 space-y-8 pb-20">
-            
-            <div id="tab1" class="tab-content active space-y-6">
-                <div>
-                    <h2 class="text-xs font-black text-gray-400 tracking-widest mb-3">EXPERIENCE</h2>
-                    <div class="space-y-3">
-                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                            <p class="font-bold text-gray-900 text-sm">메타리치 맵그룹 압도 종합보험설계사</p>
-                            <p class="text-xs text-gray-400 mt-1">2026.01 - 현재</p>
+            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [activeTab, isChatOpen]);
+            useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+
+            const profile = {
+                name: "이현",
+                title: "종합보험설계사",
+                slogan: "당신의 보상을 지키는 방패 : 세이프가드 프로",
+                photoUrl: "https://i.postimg.cc/0jJGBpML/peulopil.jpg",
+                experience: [
+                    { title: "메타리치 맵그룹 압도 종합보험설계사", period: "2026.01 - 현재" },
+                    { title: "세이프가드 프로 | 종합보험 컨설팅 대표설계사", period: "2026.02 - 현재" }
+                ],
+                certificates: ["손해보험", "생명보험", "변액보험", "제3보험"],
+                activities: [
+                    { name: "세이프가드 프로 블로그", link: "https://m.blog.naver.com/safeguard_pro" },
+                    { name: "세이프가드 프로 인스타그램", link: "https://www.instagram.com/m.a.p_lee_pro?igsh=eWlna2F6bjNuZGc4&utm_source=qr" }
+                ]
+            };
+
+            const sendMessage = async () => {
+                if (!userInput.trim()) return;
+                
+                const newMessages = [...messages, { role: 'user', content: userInput }];
+                setMessages(newMessages);
+                setUserInput('');
+
+                try {
+                    const response = await fetch('/API/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userInput, name: userName, phone: userPhone })
+                    });
+                    const data = await response.json();
+                    setMessages([...newMessages, { role: 'assistant', content: data.answer }]);
+                } catch (e) {
+                    setMessages([...newMessages, { role: 'assistant', content: '연결 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' }]);
+                }
+            };
+
+            return (
+                <div className="max-w-md mx-auto bg-white min-h-screen pb-16 shadow-2xl relative overflow-hidden rounded-t-3xl border-t border-gray-100">
+                    
+                    {/* --- 원본 앱 헤더 --- */}
+                    <div className="bg-slate-950 text-white p-10 rounded-b-[3.5rem] text-center shadow-xl relative z-10">
+                        <div className="w-28 h-28 mx-auto mb-5 border-4 border-white rounded-full overflow-hidden shadow-2xl bg-white flex items-center justify-center">
+                            <img src={profile.photoUrl} alt="프로필" className="w-full h-full object-cover scale-105" />
                         </div>
-                        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                            <p class="font-bold text-gray-900 text-sm">종합보험 자문센터 세이프가드 프로 대표설계사</p>
-                            <p class="text-xs text-gray-400 mt-1">2026.02 - 현재</p>
+                        <h1 className="text-2xl font-black">{profile.name}</h1>
+                        <p className="text-blue-400 font-bold mt-1.5">{profile.title}</p>
+                        <p className="text-sm text-gray-400 mt-5 italic">"{profile.slogan}"</p>
+                        
+                        <div className="mt-10">
+                            {/* 🔥 버튼 클릭 시 AI 채팅창 오픈 */}
+                            <button onClick={() => setIsChatOpen(true)} className="bg-white text-slate-900 px-10 py-3.5 rounded-full font-black shadow-xl inline-flex items-center gap-2 active:scale-95 transition-all hover:bg-gray-50">
+                                <i data-lucide="message-circle" className="w-5 h-5 text-blue-600"></i> 실시간 상담하기
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <h2 class="text-xs font-black text-gray-400 tracking-widest mb-3">LICENSES</h2>
-                    <div class="flex flex-wrap gap-2.5">
-                        <span class="license-badge">손해보험</span>
-                        <span class="license-badge">생명보험</span>
-                        <span class="license-badge">변액보험</span>
-                        <span class="license-badge">제3보험</span>
+
+                    {/* --- 탭 메뉴 --- */}
+                    <div className="flex justify-around mt-10 px-6 border-b border-gray-100 bg-white">
+                        {['experience', 'activity', 'intro'].map((id) => (
+                            <button key={id} onClick={() => setActiveTab(id)} className={`flex flex-col items-center pb-4 px-3 gap-1.5 relative ${activeTab === id ? 'text-slate-950 font-black' : 'text-gray-400'}`}>
+                                <i data-lucide={id === 'experience' ? 'award' : id === 'activity' ? 'book-open' : 'user'} className="w-5 h-5"></i>
+                                <span className="text-xs">{id === 'experience' ? '경력/자격' : id === 'activity' ? '활동증명' : '소개글'}</span>
+                                {activeTab === id && <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-950 rounded-t-full"></div>}
+                            </button>
+                        ))}
                     </div>
+
+                    {/* --- 탭 내용 --- */}
+                    <div className="p-8 animate-fadeIn bg-white">
+                        {activeTab === 'experience' && (
+                            <div className="space-y-6">
+                                <div>
+                                    <h3 className="text-xs font-black text-gray-400 mb-4 tracking-widest uppercase">Experience</h3>
+                                    {profile.experience.map((exp, i) => (
+                                        <div key={i} className="bg-gray-50 p-5 rounded-2xl mb-4 border border-gray-100">
+                                            <h4 className="font-bold text-slate-800">{exp.title}</h4>
+                                            <p className="text-xs text-gray-500 mt-2">{exp.period}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div>
+                                    <h3 className="text-xs font-black text-gray-400 mb-4 tracking-widest uppercase">Licenses</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {profile.certificates.map((cert, i) => (
+                                            <span key={i} className="bg-blue-50 text-blue-700 px-3 py-2 rounded-xl text-xs font-bold border border-blue-100">{cert}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {activeTab === 'activity' && (
+                            <div className="space-y-4">
+                                {profile.activities.map((act, i) => (
+                                    <a href={act.link} key={i} target="_blank" className="flex items-center justify-between bg-white p-5 rounded-2xl shadow-sm border border-gray-100 active:bg-gray-50 group">
+                                        <span className="font-bold text-slate-700 group-hover:text-blue-700">{act.name}</span>
+                                        <i data-lucide="external-link" className="w-4 h-4 text-blue-500"></i>
+                                    </a>
+                                ))}
+                            </div>
+                        )}
+                        {activeTab === 'intro' && (
+                            <div className="bg-slate-50 p-8 rounded-3xl text-slate-700 leading-relaxed border border-gray-100">
+                                <p className="mb-6 text-lg text-slate-900">안녕하세요,<br/><span className="font-extrabold text-blue-800">세이프가드 프로</span> 대표 <span className="font-extrabold text-black">이현</span>입니다.</p>
+                                <p className="mb-4 text-base">종합보험 설계와 손해사정 관점을 동시에 이해하는 전문가로서, 가입부터 보상 분쟁 대응까지 전 과정을 밀착 관리합니다.</p>
+                                <p className="text-blue-800 font-bold italic">"고객님의 보상을 지키는 단단한 방패가 되어 드리겠습니다."</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* --- 🔥 AI 채팅창 팝업 레이어 --- */}
+                    {isChatOpen && (
+                        <div className="fixed inset-0 z-[100] flex justify-center items-end bg-black bg-opacity-50">
+                            <div className="w-full max-w-md bg-white h-[90vh] rounded-t-[2.5rem] shadow-2xl flex flex-col chat-slide-up">
+                                <div className="p-6 border-b flex justify-between items-center bg-slate-950 text-white rounded-t-[2.5rem]">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-full bg-white overflow-hidden">
+                                            <img src={profile.photoUrl} className="w-full h-full object-cover" />
+                                        </div>
+                                        <span className="font-bold">AI 보험 상담</span>
+                                    </div>
+                                    <button onClick={() => setIsChatOpen(false)} className="p-1 hover:bg-slate-800 rounded-full transition-colors">
+                                        <i data-lucide="x" className="w-6 h-6"></i>
+                                    </button>
+                                </div>
+
+                                <div className="flex-1 overflow-y-auto p-6 bg-gray-50 space-y-4">
+                                    {messages.map((msg, i) => (
+                                        <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                                            <div className={`max-w-[85%] p-4 rounded-2xl shadow-sm text-sm leading-relaxed ${
+                                                msg.role === 'user' 
+                                                ? 'bg-blue-600 text-white rounded-tr-none' 
+                                                : 'bg-white text-slate-800 rounded-tl-none border border-gray-100'
+                                            }`}>
+                                                {msg.content}
+                                            </div>
+                                        </div>
+                                    ))}
+                                    <div ref={chatEndRef} />
+                                </div>
+
+                                <div className="p-6 bg-white border-t space-y-3">
+                                    <div className="flex gap-2">
+                                        <input value={userName} onChange={(e) => setUserName(e.target.value)} type="text" placeholder="성함" className="w-1/3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                        <input value={userPhone} onChange={(e) => setUserPhone(e.target.value)} type="tel" placeholder="연락처" className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <input value={userInput} onChange={(e) => setUserInput(e.target.value)} onKeyPress={(e) => e.key === 'Enter' && sendMessage()} type="text" placeholder="보험 궁금증을 입력하세요..." className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                        <button onClick={sendMessage} className="bg-blue-600 text-white p-3 rounded-xl shadow-lg active:scale-95 transition-all">
+                                            <i data-lucide="send" className="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            </div>
+            );
+        };
 
-            <div id="tab2" class="tab-content text-center py-10 text-gray-400">활동 내용이 준비 중입니다.</div>
-            
-            <div id="tab3" class="tab-content py-4 text-gray-700 leading-relaxed text-sm">
-                안녕하세요. 세이프가드 프로 대표 설계사 이현입니다.<br><br>
-                단순히 보험을 파는 것이 아니라, 고객님의 소중한 자산과 건강을 지키는 가장 확실한 방패가 되어 드리겠습니다. 정직과 신뢰를 바탕으로 최적의 맞춤형 보상을 설계해 드립니다.
-            </div>
-        </div>
-    </div>
-
-    <div id="chatPopup" class="chat-popup safe-area">
-        <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center shadow-md">
-            <span class="text-base">보험 전문가 AI 상담</span>
-            <button onclick="closeChat()" class="text-2xl p-1"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <div id="chatContent" class="flex-1 p-5 overflow-y-auto bg-gray-50 text-sm space-y-5">
-            <div class="flex gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border text-blue-600"><i class="fas fa-robot"></i></div>
-                <div class="bg-blue-100 p-3.5 rounded-2xl rounded-bl-none text-gray-800 max-w-[80%]">안녕하세요! 설계사 이현을 대신해 상담을 도와드리는 AI입니다. 성함과 연락처를 남겨주시면 더욱 정확한 상담이 가능합니다.</div>
-            </div>
-        </div>
-        
-        <div class="p-4 border-t bg-white space-y-2">
-            <div class="flex gap-2">
-                <input id="userName" type="text" placeholder="성함" class="flex-1 border p-2.5 rounded-xl bg-gray-50">
-                <input id="userPhone" type="tel" placeholder="연락처 (숫자만)" class="flex-1 border p-2.5 rounded-xl bg-gray-50">
-            </div>
-            <div class="flex gap-2">
-                <input id="chatInput" type="text" placeholder="궁금한 보험 내용을 입력하세요..." class="flex-1 border p-2.5 rounded-xl bg-gray-50">
-                <button onclick="sendMessage()" class="bg-blue-600 text-white px-5 rounded-xl font-bold">전송</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // 💖 탭 전환 스크립트 복구
-        function openTab(evt, tabName) {
-            const tabcontent = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
-            const tablinks = document.getElementsByClassName("tab-item");
-            for (let i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-
-        // 🔥 AI 채팅창 제어 스크립트
-        function openChat() { document.getElementById('chatPopup').classList.add('chat-active'); }
-        function closeChat() { document.getElementById('chatPopup').classList.remove('chat-active'); }
-
-        async function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const message = input.value.trim();
-            const name = document.getElementById('userName').value.trim();
-            const phone = document.getElementById('userPhone').value.trim();
-            const content = document.getElementById('chatContent');
-
-            if (!message) return;
-
-            // 내 메시지 화면에 표시
-            content.innerHTML += `<div class="flex justify-end"><div class="bg-blue-600 text-white p-3.5 rounded-2xl rounded-br-none max-w-[80%]">${message}</div></div>`;
-            input.value = '';
-            content.scrollTop = content.scrollHeight;
-
-            try {
-                // 🔥 중요: Vercel 환경 변수가 다 정확하다는 가정하에 호출
-                const response = await fetch('/API/chat', { // 대소문자 확인 필수
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message, name, phone })
-                });
-                
-                if (!response.ok) throw new Error('Network response was not ok');
-                
-                const data = await response.json();
-                
-                // AI 답변 화면에 표시
-                content.innerHTML += `<div class="flex gap-2.5"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center border text-blue-600"><i class="fas fa-robot"></i></div><div class="bg-white border p-3.5 rounded-2xl rounded-bl-none text-gray-800 max-w-[80%]">${data.answer}</div></div>`;
-                content.scrollTop = content.scrollHeight;
-            } catch (e) {
-                console.error("오류 상세:", e);
-                content.innerHTML += `<div class="text-center text-red-500 text-xs py-2"><i class="fas fa-exclamation-triangle"></i> AI가 잠시 생각 중입니다. 다시 시도해 주세요.</div>`;
-                content.scrollTop = content.scrollHeight;
-            }
-        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
