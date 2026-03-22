@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app">
+    <meta property="og:title" content="이현 | 세이프가드 프로 | 대표 보험설계사">
+    <meta property="og:description" content="당신의 보상을 지키는 방패 : 세이프가드 프로">
+    <meta property="og:image" content="https://profile-card-gamma-livid.vercel.app/profile.jpg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+
     <title>세이프가드 프로 | 대표 보험설계사 | 이현</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -33,7 +43,8 @@
                     {/* 상단 프로필 섹션 */}
                     <div className="bg-slate-950 text-white p-10 rounded-b-[3rem] text-center shadow-xl">
                         <div className="w-24 h-24 mx-auto mb-4 border-4 border-white rounded-full overflow-hidden bg-white">
-                            <img src="https://i.postimg.cc/0jJGBpML/peulopil.jpg" alt="프로필" className="w-full h-full object-cover" />
+                            <img src="profile.jpg" alt="프로필" className="w-full h-full object-cover" 
+                                 onError={(e) => e.target.src = "https://i.postimg.cc/0jJGBpML/peulopil.jpg"} />
                         </div>
                         <h1 className="text-2xl font-black">이현</h1>
                         <p className="text-blue-400 font-bold mt-1">종합보험설계사</p>
