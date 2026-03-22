@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app">
     <meta property="og:title" content="이현 | 세이프가드 프로 | 대표 보험설계사">
     <meta property="og:description" content="당신의 보상을 지키는 방패 : 세이프가드 프로">
-    <meta property="og:image" content="https://profile-card-gamma-livid.vercel.app/profile.jpg">
+    <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg">
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="400">
 
@@ -43,8 +43,16 @@
                     {/* 상단 프로필 섹션 */}
                     <div className="bg-slate-950 text-white p-10 rounded-b-[3rem] text-center shadow-xl">
                         <div className="w-24 h-24 mx-auto mb-4 border-4 border-white rounded-full overflow-hidden bg-white">
-                            <img src="profile.jpg" alt="프로필" className="w-full h-full object-cover" 
-                                 onError={(e) => e.target.src = "https://i.postimg.cc/0jJGBpML/peulopil.jpg"} />
+                            {/* 이미지가 없을 경우를 대비한 2중 장치 */}
+                            <img 
+                                src="profile.jpg" 
+                                alt="프로필" 
+                                className="w-full h-full object-cover" 
+                                onError={(e) => {
+                                    e.target.onerror = null; 
+                                    e.target.src = "https://i.postimg.cc/0jJGBpML/peulopil.jpg";
+                                }} 
+                            />
                         </div>
                         <h1 className="text-2xl font-black">이현</h1>
                         <p className="text-blue-400 font-bold mt-1">종합보험설계사</p>
