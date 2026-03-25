@@ -9,23 +9,25 @@
     <meta property="og:description" content="당신의 보상을 지키는 방패 : 세이프가드">
     <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg">
     <title>세이프가드 | 대표 보험설계사 | 이현</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- React (Development version 추천) -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/lucide-react"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; }
-        .animate-fadeIn { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
     <div id="root"></div>
+
     <script type="text/babel">
         const { useState } = React;
-        const { Phone, MessageCircle, ChevronRight } = LucideReact;
 
         const App = () => {
             const [activeTab, setActiveTab] = useState('experience');
@@ -34,28 +36,36 @@
                 <div className="max-w-md mx-auto bg-white min-h-screen pb-20 shadow-2xl relative">
                     <div className="bg-[#0f172a] text-white p-10 rounded-b-[3rem] text-center shadow-xl">
                         <div className="w-24 h-24 mx-auto mb-4 border-4 border-white rounded-full overflow-hidden bg-white">
-                            <img src="https://i.postimg.cc/0jJGBpML/peulopil.jpg" alt="프로필" className="w-full h-full object-cover" />
+                            <img src="https://i.postimg.cc/0jJGBpML/peulopil.jpg" alt="이현 보험설계사 프로필 사진" className="w-full h-full object-cover" />
                         </div>
                         <h1 className="text-2xl font-black">이현</h1>
                         <p className="text-blue-400 font-bold mt-1">보험설계사</p>
                         <p className="text-xs text-gray-400 mt-4 italic">"당신의 보상을 지키는 방패 : 세이프가드"</p>
+
                         <div className="mt-8 flex flex-col gap-3 items-center">
-                            <a href="tel:010-8143-5435" className="w-full max-w-[240px] bg-blue-600 text-white px-6 py-4 rounded-full font-black shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
-                                <Phone className="w-5 h-5" /> 1:1 전화상담
+                            <a href="tel:01081435435" className="w-full max-w-[240px] bg-blue-600 text-white px-6 py-4 rounded-full font-black shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                                <span>📞</span> 1:1 전화상담
                             </a>
-                            <a href="https://open.kakao.com/o/s85ZJzmi" target="_blank" className="w-full max-w-[240px] bg-[#fee500] text-slate-900 px-6 py-4 rounded-full font-black shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform">
-                                <MessageCircle className="w-5 h-5" /> 1:1 전문상담
+
+                            <a href="https://open.kakao.com/o/s85ZJzmi" target="_blank" rel="noopener noreferrer" className="w-full max-w-[240px] bg-[#fee500] text-slate-900 px-6 py-4 rounded-full font-black shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                                <span>💬</span> 1:1 전문상담
                             </a>
                         </div>
                     </div>
 
                     <div className="flex justify-around mt-8 px-4 border-b border-gray-100 font-bold text-sm">
-                        <button onClick={() => setActiveTab('experience')} className={`pb-3 px-2 ${activeTab === 'experience' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>경력/자격</button>
-                        <button onClick={() => setActiveTab('activity')} className={`pb-3 px-2 ${activeTab === 'activity' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>활동보러가기</button>
-                        <button onClick={() => setActiveTab('intro')} className={`pb-3 px-2 ${activeTab === 'intro' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>소개글</button>
+                        <button onClick={() => setActiveTab('experience')} className={`pb-3 px-2 ${activeTab === 'experience' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>
+                            경력/자격
+                        </button>
+                        <button onClick={() => setActiveTab('activity')} className={`pb-3 px-2 ${activeTab === 'activity' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>
+                            활동보러가기
+                        </button>
+                        <button onClick={() => setActiveTab('intro')} className={`pb-3 px-2 ${activeTab === 'intro' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>
+                            소개글
+                        </button>
                     </div>
 
-                    <div className="p-6 animate-fadeIn">
+                    <div className="p-6">
                         {activeTab === 'experience' && (
                             <div className="space-y-4">
                                 <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
@@ -71,25 +81,26 @@
 
                         {activeTab === 'activity' && (
                             <div className="space-y-3">
-                                <a href="https://m.blog.naver.com/safeguard_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50">
+                                <a href="https://m.blog.naver.com/safeguard_pro" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50">
                                     <div className="flex items-center gap-3">
-                                        <img src="https://i.postimg.cc/6pX8mX7z/blog-icon.png" alt="Blog" className="w-7 h-7 object-contain" />
+                                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111492.png" alt="네이버 블로그 아이콘" className="w-7 h-7 object-contain" />
                                         <span className="font-bold text-slate-700">공식 네이버 블로그</span>
                                     </div>
-                                    <ChevronRight className="w-4 h-4 text-gray-300" />
+                                    <span>›</span>
                                 </a>
-                                <a href="https://www.instagram.com/m.a.p_lee_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50">
+
+                                <a href="https://www.instagram.com/m.a.p_lee_pro" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50">
                                     <div className="flex items-center gap-3">
-                                        <img src="https://i.postimg.cc/Ssdm7mXn/insta-icon.png" alt="Instagram" className="w-7 h-7 object-contain" />
+                                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="인스타그램 아이콘" className="w-7 h-7 object-contain" />
                                         <span className="font-bold text-slate-700">공식 인스타그램</span>
                                     </div>
-                                    <ChevronRight className="w-4 h-4 text-gray-300" />
+                                    <span>›</span>
                                 </a>
                             </div>
                         )}
 
                         {activeTab === 'intro' && (
-                            <div className="bg-slate-50 p-6 rounded-2xl text-slate-700 text-sm leading-relaxed border border-slate-100">
+                            <div className="bg-slate-50 p-6 rounded-2xl text-slate-700 text-sm leading-relaxed border border-slate-100 shadow-inner">
                                 <p className="text-base mb-4 text-center font-bold text-slate-800">"세이프가드와 함께하는 안심 보험 솔루션"</p>
                                 <div className="space-y-4 text-gray-600">
                                     <p>안녕하세요. 당신의 보상을 지키는 방패, 세이프가드 대표 보험설계사 <strong>이현</strong>입니다.</p>
