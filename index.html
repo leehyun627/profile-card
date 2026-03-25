@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://profile-card-gamma-livid.vercel.app">
     <meta property="og:title" content="세이프가드 | 대표 보험설계사 | 이현">
     <meta property="og:description" content="당신의 보상을 지키는 방패 : 세이프가드">
     <meta property="og:image" content="https://i.postimg.cc/0jJGBpML/peulopil.jpg">
-
     <title>세이프가드 | 대표 보험설계사 | 이현</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -20,8 +17,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; margin: 0; padding: 0; }
-        .animate-fadeIn { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -35,97 +30,56 @@
 
             return (
                 <div className="max-w-md mx-auto bg-white min-h-screen pb-20 shadow-2xl relative">
-                    {/* 상단 프로필 섹션 */}
                     <div className="bg-slate-950 text-white p-10 rounded-b-[3rem] text-center shadow-xl">
                         <div className="w-24 h-24 mx-auto mb-4 border-4 border-white rounded-full overflow-hidden bg-white">
-                            <img 
-                                src="https://i.postimg.cc/0jJGBpML/peulopil.jpg" 
-                                alt="프로필" 
-                                className="w-full h-full object-cover" 
-                            />
+                            <img src="https://i.postimg.cc/0jJGBpML/peulopil.jpg" alt="프로필" className="w-full h-full object-cover" />
                         </div>
                         <h1 className="text-2xl font-black">이현</h1>
                         <p className="text-blue-400 font-bold mt-1">보험설계사</p>
                         <p className="text-xs text-gray-400 mt-4 italic">"당신의 보상을 지키는 방패 : 세이프가드"</p>
-                        
                         <div className="mt-8 flex flex-col gap-3 items-center">
-                            <a href="tel:010-8143-5435" className="w-full max-w-[240px] bg-blue-600 text-white px-6 py-4 rounded-full font-black shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                            <a href="tel:010-8143-5435" className="w-full max-w-[240px] bg-blue-600 text-white px-6 py-4 rounded-full font-black shadow-lg flex items-center justify-center gap-2">
                                 <Phone className="w-5 h-5" /> 1:1 전화상담
                             </a>
-                            <a href="https://open.kakao.com/o/s85ZJzmi" target="_blank" className="w-full max-w-[240px] bg-yellow-400 text-slate-900 px-6 py-4 rounded-full font-black shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                            <a href="https://open.kakao.com/o/s85ZJzmi" target="_blank" className="w-full max-w-[240px] bg-yellow-400 text-slate-900 px-6 py-4 rounded-full font-black shadow-md flex items-center justify-center gap-2">
                                 <MessageCircle className="w-5 h-5" /> 1:1 전문상담
                             </a>
                         </div>
                     </div>
-
-                    {/* 탭 메뉴 */}
                     <div className="flex justify-around mt-8 px-4 border-b border-gray-100 font-bold text-sm">
                         <button onClick={() => setActiveTab('experience')} className={`pb-3 px-2 ${activeTab === 'experience' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>경력/자격</button>
                         <button onClick={() => setActiveTab('activity')} className={`pb-3 px-2 ${activeTab === 'activity' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>활동보러가기</button>
                         <button onClick={() => setActiveTab('intro')} className={`pb-3 px-2 ${activeTab === 'intro' ? 'text-slate-900 border-b-2 border-slate-900' : 'text-gray-400'}`}>소개글</button>
                     </div>
-
-                    {/* 콘텐츠 섹션 */}
-                    <div className="p-6 animate-fadeIn">
+                    <div className="p-6">
                         {activeTab === 'experience' && (
                             <div className="space-y-4">
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
-                                    <h4 className="font-bold text-slate-800">메타리치 맵그룹 압도 보험설계사</h4>
-                                    <p className="text-[10px] text-gray-400 mt-1">2026.01 - 현재</p>
-                                </div>
-                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm">
-                                    <h4 className="font-bold text-slate-800">세이프가드 대표 보험설계사</h4>
-                                    <p className="text-[10px] text-gray-400 mt-1">2026.02 - 현재</p>
-                                </div>
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100"><h4 className="font-bold">메타리치 맵그룹 압도 보험설계사</h4><p className="text-[10px] text-gray-400">2026.01 - 현재</p></div>
+                                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100"><h4 className="font-bold">세이프가드 대표 보험설계사</h4><p className="text-[10px] text-gray-400">2026.02 - 현재</p></div>
                             </div>
                         )}
-
                         {activeTab === 'activity' && (
                             <div className="space-y-3">
-                                <a href="https://m.blog.naver.com/safeguard_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50 transition-colors">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 flex items-center justify-center">
-                                            <img src="https://i.postimg.cc/6pX8mX7z/blog-icon.png" alt="Blog" className="w-full h-full object-contain" />
-                                        </div>
-                                        <span className="font-bold text-slate-700">공식 네이버 블로그</span>
-                                    </div>
+                                <a href="https://m.blog.naver.com/safeguard_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100">
+                                    <div className="flex items-center gap-3"><img src="https://i.postimg.cc/6pX8mX7z/blog-icon.png" className="w-8 h-8" alt="blog" /><span>공식 네이버 블로그</span></div>
                                     <ChevronRight className="w-4 h-4 text-gray-300" />
                                 </a>
-                                <a href="https://www.instagram.com/m.a.p_lee_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100 shadow-sm active:bg-gray-50 transition-colors">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 flex items-center justify-center">
-                                            <img src="https://i.postimg.cc/Ssdm7mXn/insta-icon.png" alt="Instagram" className="w-full h-full object-contain" />
-                                        </div>
-                                        <span className="font-bold text-slate-700">공식 인스타그램</span>
-                                    </div>
+                                <a href="https://www.instagram.com/m.a.p_lee_pro" target="_blank" className="flex items-center justify-between bg-white p-5 rounded-xl border border-gray-100">
+                                    <div className="flex items-center gap-3"><img src="https://i.postimg.cc/Ssdm7mXn/insta-icon.png" className="w-8 h-8" alt="insta" /><span>공식 인스타그램</span></div>
                                     <ChevronRight className="w-4 h-4 text-gray-300" />
                                 </a>
                             </div>
                         )}
-
                         {activeTab === 'intro' && (
-                            <div className="bg-slate-50 p-6 rounded-2xl text-slate-700 text-sm leading-relaxed border border-slate-100 shadow-inner">
-                                <p className="text-base mb-4 text-center font-bold text-slate-800">"세이프가드와 함께하는 안심 보험 솔루션"</p>
-                                <div className="space-y-4 text-gray-600">
-                                    <p>안녕하세요.</p>
-                                    <p>당신의 보상을 지키는 방패, 세이프가드 대표 보험설계사 <strong>이현</strong>입니다.</p>
-                                    <p>세이프가드는 체계적인 <strong>보험점검</strong>을 통해 보장자산을 분석하는 <strong>전문가</strong>로서, <strong>국내 52개 보험사를 기반</strong>으로 고객 맞춤형 보험 솔루션을 제공합니다.</p>
-                                    <p>가입 설계부터 리스크 분석, 보상 청구 가이드, 사후관리까지 전 과정을 체계적으로 관리하여 고객님의 안전과 미래를 지켜드립니다.</p>
-                                    <p className="text-center mt-6 pt-4 border-t border-dashed border-gray-300 font-medium">
-                                        고객의 든든한 동반자, 세이프가드가 함께하겠습니다.
-                                    </p>
-                                </div>
+                            <div className="bg-slate-50 p-6 rounded-2xl text-sm leading-relaxed border">
+                                <p className="font-bold mb-4 text-center">"세이프가드와 함께하는 안심 보험 솔루션"</p>
+                                <p>안녕하세요. 당신의 보상을 지키는 방패, <strong>이현</strong>입니다. 체계적인 <strong>보험점검</strong>과 <strong>국내 52개 보험사</strong> 기반의 맞춤형 솔루션을 제공합니다.</p>
                             </div>
                         )}
-                    </div>
-
-                    <div className="fixed bottom-0 max-w-md w-full bg-white/80 backdrop-blur-md border-t border-gray-100 p-3 flex justify-center">
-                        <p className="text-[10px] text-gray-400 font-medium">© 2026 Safeguard. All Rights Reserved.</p>
                     </div>
                 </div>
             );
         };
-
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
